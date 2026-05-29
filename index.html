@@ -43,6 +43,14 @@ function handleCredentialResponse(r){
   const target = WEBAPP_URL + '?token=' + encodeURIComponent(r.credential);
   location.replace(target);
 }
+(function(){
+  const sid = localStorage.getItem('lbm_session');
+  if (sid) {
+    // thử vào thẳng bằng session cũ, nếu hết hạn Apps Script sẽ tự đá về login
+    location.replace(WEBAPP_URL + '?sid=' + encodeURIComponent(sid));
+  }
+})();
+
 </script>
 </body>
 </html>
